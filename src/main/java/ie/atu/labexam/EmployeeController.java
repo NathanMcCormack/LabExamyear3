@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +16,14 @@ public class EmployeeController {
     private List<Employee> employeeList = new ArrayList<>();
 
     @GetMapping("/{employeeCode}")
-    public List<Employee> getALlEmployees(@PathVariable String employeeCode){
+    public List<Employee> getALlEmployees(@PathVariable @Valid String employeeCode){
         return employeeList;
     }
 
     @PostMapping
-    public Employee addEmployee(@RequestBody Employee newEmployee){
+    public String addEmployee(@RequestBody @Valid Employee newEmployee){
         employeeList.add(newEmployee);
-        return newEmployee;
+        return "message: Employee added successfully,\nemployeeCode: "+ newEmployee.getEmployeeCode() + ",\ntimestamp : ";
     }
 
     @PutMapping("/{employeeCode}")
@@ -37,7 +38,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{employeeCode}")
-    public ResponseEntity <List> deleteEmployee(@PathVariable String employeeCode){
+    public ResponseEntity <List> deleteEmployee(@PathVariable @Valid String employeeCode){
         for(Employee e : employeeList){
             if(e.getEmployeeCode().equals(employeeCode)){
                 employeeList.remove(e);
