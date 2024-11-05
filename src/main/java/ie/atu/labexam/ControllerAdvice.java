@@ -22,5 +22,4 @@ public class ControllerAdvice {
         return ResponseEntity.status(400).body(errorList);
     }
 
-
 }
