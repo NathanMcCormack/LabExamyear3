@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Employee {
 
-
+    @Max(value = 100, message = "Code cant be greater than 100 characters ")
     private String employeeCode;
 
     @Max(value=100, message = "Name cannot be greater than 100 characters")
@@ -26,13 +26,13 @@ public class Employee {
     @Email(message = "Must be valid email")
     private String email;
 
-
+    @Max(value = 100, message = "Code cant be greater than 100 characters ")
     private String position;
 
     @Min(value = 1, message = "Salary must be positive")
-    private DecimalFormat salary;
+    private int salary;
 
-    @DateTimeFormat
-    private Date dateOfJoining;
+    @Max(value = 100, message = "Code cant be greater than 100 characters ")
+    private String dateOfJoining;
 
 }
